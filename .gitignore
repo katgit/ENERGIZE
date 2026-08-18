@@ -4,3 +4,5 @@
 .vscode/
 test.py
 circle_calc.py
+gpu_benchmark.o*
+numpy_benchmark.o*
