@@ -11,4 +11,8 @@ module load miniconda
 module load cuda/12.8
 conda activate energize
 
+# Use the C++ runtime bundled with the conda environment. The SCC system
+# libstdc++ may be too old for the compiled NumPy and PyTorch extensions.
+export LD_LIBRARY_PATH="$CONDA_PREFIX/lib:${LD_LIBRARY_PATH:-}"
+
 python gpu_benchmark.py
