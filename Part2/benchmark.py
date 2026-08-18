@@ -8,7 +8,7 @@ import numpy as np
 def main():
     matrix_size = 1000
     repetitions = 3
-    random_generator = np.random.default_rng(42)
+    random_generator = np.random.RandomState(42)
     left_matrix = random_generator.random((matrix_size, matrix_size))
     right_matrix = random_generator.random((matrix_size, matrix_size))
 
