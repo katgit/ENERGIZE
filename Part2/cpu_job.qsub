@@ -7,7 +7,7 @@
 #$ -P nsf-energize
 
 module load miniconda
-source activate energize
+conda activate energize
 
 export OMP_NUM_THREADS=4
 export MKL_NUM_THREADS=4

@@ -9,6 +9,6 @@
 
 module load miniconda
 module load cuda/12.8
-source activate energize
+conda activate energize
 
 python gpu_benchmark.py
