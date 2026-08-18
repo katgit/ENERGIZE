@@ -2,27 +2,27 @@
 
 Before the workshop, please install and test the following on your own laptop. This only needs to be done once. If you run into trouble, bring your laptop to the start of the session and we will help you get set up.
 
-## 1. Install Python
+We recommend using **Anaconda**, which installs Python, Jupyter, and the scientific packages used in this workshop (NumPy, pandas, Matplotlib) all at once, along with a graphical **Anaconda Navigator** for managing environments.
 
-We recommend installing Python from the official source (rather than only relying on the version built into macOS).
+## 1. Install Anaconda
 
 ### macOS
-1. Go to [python.org/downloads](https://www.python.org/downloads/) and download the latest **Python 3** installer for macOS.
-2. Run the downloaded `.pkg` installer and follow the prompts.
-3. Verify the install by opening the **Terminal** app (search for it with Spotlight, `Cmd+Space`) and running:
+1. Go to [anaconda.com/download](https://www.anaconda.com/download) and download the **Anaconda Distribution** installer for macOS (choose the graphical `.pkg` installer for your Mac's chip - Apple Silicon or Intel).
+2. Run the downloaded `.pkg` installer and follow the prompts, accepting the default options.
+3. Open a **new** Terminal window (search for it with Spotlight, `Cmd+Space`) so the installer's changes take effect, and verify the install:
    ```bash
+   conda --version
    python3 --version
    ```
-   You should see something like `Python 3.12.x`.
 
 ### Windows
-1. Go to [python.org/downloads](https://www.python.org/downloads/) and download the latest **Python 3** installer for Windows.
-2. Run the installer. **Important**: on the first install screen, check the box **"Add python.exe to PATH"** before clicking Install.
-3. Verify the install by opening **Command Prompt** or **PowerShell** (search for it in the Start menu) and running:
+1. Go to [anaconda.com/download](https://www.anaconda.com/download) and download the **Anaconda Distribution** installer for Windows.
+2. Run the installer, accepting the default options (install "just for me" when prompted).
+3. Open **Anaconda Prompt** from the Start menu (search for it) and verify the install:
    ```powershell
+   conda --version
    python --version
    ```
-   You should see something like `Python 3.12.x`.
 
 ## 2. Install VS Code
 
@@ -40,28 +40,39 @@ Inside VS Code:
 
 These two extensions let VS Code run `.py` scripts and `.ipynb` (Jupyter) notebooks directly, with a built-in interactive Python session.
 
-## 4. Install Jupyter and Key Packages
+## 4. Create the Workshop Conda Environment
 
-1. In VS Code, open a new terminal: menu **Terminal > New Terminal** (or `` Ctrl+` ``).
-2. Install Jupyter and the packages used in this workshop by running:
+Anaconda already includes a `base` environment with Jupyter, NumPy, pandas, and Matplotlib. For this workshop, we'll create a separate, dedicated environment named `energize` so it doesn't interfere with anything else on your machine.
 
-   **macOS**
-   ```bash
-   python3 -m pip install --upgrade pip
-   python3 -m pip install jupyter numpy pandas matplotlib
-   ```
+Open a terminal (macOS: Terminal app; Windows: **Anaconda Prompt** from the Start menu) and run:
 
-   **Windows**
-   ```powershell
-   python -m pip install --upgrade pip
-   python -m pip install jupyter numpy pandas matplotlib
-   ```
+```bash
+conda create -n energize python=3.14 jupyter numpy pandas matplotlib ipykernel -y
+```
+
+Activate it:
+
+```bash
+conda activate energize
+```
+
+Your terminal prompt should now start with `(energize)`. Any `python`, `pip`, or `jupyter` command you run now uses this environment. To leave the environment later, run `conda deactivate`.
+
+### Register the Environment as a Jupyter Kernel
+
+So VS Code (and Jupyter) can find and use this environment:
+
+```bash
+python -m ipykernel install --user --name energize --display-name "Python (energize)"
+```
+
+> **Prefer a graphical tool?** You can do the same steps using **Anaconda Navigator** (installed alongside Anaconda): open Navigator, go to the **Environments** tab, click **Create**, name it `energize`, and select Python 3.12. Then use the environment's package list (or the **Home** tab) to install/launch Jupyter.
 
 ## 5. Open and Run a Notebook in VS Code
 
 1. In VS Code, go to **File > Open Folder...** and open the `ENERGIZE` folder (the one containing `Part1` and `Part2`).
 2. In the Explorer sidebar, open `Part1/01_Python_Basics_and_Data_Structures.ipynb`.
-3. VS Code will show the notebook with its cells. In the top-right corner, click **Select Kernel**, then choose the Python interpreter you just installed (e.g., `Python 3.12.x`).
+3. VS Code will show the notebook with its cells. In the top-right corner, click **Select Kernel**, then choose **"Python (energize)"** (or select the `energize` conda environment directly from the interpreter list).
 4. Click the ▷ (Run) button next to the first cell, or press `Shift+Enter` to run a cell and move to the next one.
 5. If a cell runs successfully and shows output below it, your setup is working correctly.
 
@@ -74,18 +85,18 @@ import numpy as np
 print("Setup successful! NumPy version:", np.__version__)
 ```
 
-Run it from the VS Code terminal:
+Run it from the VS Code terminal, with the `energize` environment activated:
 
 ```bash
-python3 test.py   # macOS
-python test.py    # Windows
+python test.py
 ```
 
 You should see a message confirming the NumPy version. If this works, you're ready for the workshop!
 
 ## Troubleshooting
 
-- **`python3`/`python` not recognized**: re-run the installer and make sure the "Add to PATH" option was checked, then restart your terminal (or your computer).
-- **`pip` not recognized**: try `python3 -m pip ...` (macOS) or `python -m pip ...` (Windows) instead of calling `pip` directly.
+- **`conda` not recognized**: close and reopen your terminal after installing Anaconda (on Windows, use **Anaconda Prompt** from the Start menu), or re-run the installer and allow it to modify your PATH / shell profile.
+- **`python`/`python3` not recognized**: make sure you opened a new terminal (or Anaconda Prompt) after installing, and that the `energize` environment is activated (`conda activate energize`).
 - **VS Code doesn't show "Select Kernel"**: make sure the Jupyter extension is installed and that you have a `.ipynb` file open, not a `.py` file.
+- **"Python (energize)" doesn't appear as a kernel**: make sure you ran the `ipykernel install` command *while* the `energize` environment was activated, then restart VS Code.
 - **Still stuck?** Bring your laptop to the workshop - we'll help you get set up before we start. Or email help@scc.bu.edu and set up a meeting with the SCC support team.
