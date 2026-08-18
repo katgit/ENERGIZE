@@ -4,6 +4,7 @@ Run these notebooks on the SCC, ideally through **SCC OnDemand** (see notebook 8
 
 ## Notebooks, in order
 
+0. **00_Setup_on_SCC_OnDemand.ipynb** - log in through SCC OnDemand, create a personal project folder, clone the workshop repository, and set up the `energize` conda environment with the workshop packages and PyTorch.
 1. **01_Advanced_Data_Structures.ipynb** - sets, set/dict comprehensions, sorting with a custom key, `zip()`, `namedtuple`.
 2. **02_Advanced_Dictionary_Usage.ipynb** - `.get()`, `defaultdict`, `Counter`, merging dictionaries, nested dictionaries and JSON.
 3. **03_NumPy_for_Performance.ipynb** - vectorization vs. Python loops (with timing), broadcasting, basic linear algebra, views vs. copies.
