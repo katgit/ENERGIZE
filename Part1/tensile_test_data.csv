@@ -1,0 +1,7 @@
+SampleID,Material,GageLength_mm,PeakLoad_N,Elongation_mm
+A01,Steel,50,45000,10.5
+A02,Steel,50,45500,11.2
+A03,Steel,51,44800,10.9
+B01,Aluminum,50,28000,12.1
+B02,Aluminum,49,28500,12.5
+B03,Aluminum,50,28200,12.3
