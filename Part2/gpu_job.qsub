@@ -1,0 +1,14 @@
+#!/bin/bash -l
+
+#$ -N gpu_benchmark
+#$ -l h_rt=00:30:00
+#$ -l gpus=1
+#$ -l gpu_c=7.0
+#$ -j y
+#$ -P nsf-energize
+
+module load miniconda
+module load cuda/12.8
+source activate energize
+
+python gpu_benchmark.py
