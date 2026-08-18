@@ -1,0 +1,15 @@
+#!/bin/bash -l
+
+#$ -N numpy_benchmark
+#$ -l h_rt=00:30:00
+#$ -pe omp 4
+#$ -j y
+
+module load miniconda
+source activate energize
+
+export OMP_NUM_THREADS=4
+export MKL_NUM_THREADS=4
+export OPENBLAS_NUM_THREADS=4
+
+python benchmark.py
