@@ -4,6 +4,7 @@
 #$ -l h_rt=00:30:00
 #$ -pe omp 4
 #$ -j y
+#$ -P nsf-energize
 
 module load miniconda
 source activate energize
